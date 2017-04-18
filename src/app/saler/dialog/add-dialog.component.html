@@ -1,0 +1,39 @@
+<div>
+    <form role="form" #foodForm="ngForm" (ngSubmit)="foodForm.valid && submit()">
+        <legend>餐饮</legend>
+
+        <div class="form-group">
+            <label for="name">名称</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="food.name" placeholder="请输入名称" required>
+        </div>
+        <div class="form-group">
+            <label for="type">类别</label>
+            <select class="form-control" name="type" [(ngModel)]="food.ftype_id" required>
+                <option *ngFor="let food_type of food_types" [value]="food_type.id">{{ food_type.name }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="desc">描述</label>
+            <input type="text" class="form-control" name="desc" [(ngModel)]="food.desc" placeholder="请输入描述" required>
+        </div>
+        <div class="form-group">
+            <label for="price">价格</label>
+            <input type="text" class="form-control" name="price" [(ngModel)]="food.price" placeholder="请输入价格" required pattern="^[1-9]\d*\.?\d{0,2}$|^0\.\d{0,2}$">
+        </div>
+        <div class="form-group">
+            <label for="image">图片</label>
+            <input type="file" class="form-control" name="image" #image>
+        </div>
+        
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary">提交</button>
+            <button class="btn btn-danger" (click)="cancel()">取消</button>
+        </div>
+
+        <div class="clear"></div>
+
+        <div *ngIf="message" class="alert alert-danger message">
+            {{ message }}
+        </div>
+    </form>
+</div>

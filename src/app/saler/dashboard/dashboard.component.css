@@ -1,0 +1,56 @@
+.count {
+    color: white;
+}
+@media screen and (max-width: 993px) {
+    .count > div {
+        margin-bottom: 20px;
+    }
+}
+
+.count .view {
+    border-radius: 100%;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    margin: 0px auto;
+}
+.count .icon {
+    padding-top: 20%;
+    font-size: 45px;
+}
+.count .num {
+    font-size: 23px;
+}
+.count .text {
+    color: black;
+    text-align: center;
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 768px) {
+    .count .view {
+        width: 200px;
+        height: 200px;
+    }
+    .count .num {
+        font-size: 28px;
+    }
+    .count .icon {
+        padding-top: 20%;
+        font-size: 55px;
+    }
+}
+
+.count .sale {
+    background-color: #3498DB;
+}
+.count .love {
+    background-color: #E74C3C
+}
+.count .user {
+    background-color: #BDC3C7;
+}
+.count .star {
+    background-color: orange;
+}

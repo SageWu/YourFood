@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row well well-sm">
+        <ul class="category">
+            <li><i class="fa fa-list"></i>&nbsp;&nbsp;<strong>商家分类</strong></li>
+            <li (click)="selectType('0')" [class.active]="selected_type_id == '0'">全部商家</li>
+            <li *ngFor="let type of shop_types" (click)="selectType(type.id)"  [class.active]="selected_type_id == type.id">{{ type.name }}</li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+
+    <div class="row">
+        <div *ngIf="message" class="message">
+            <i class="fa fa-refresh"></i>
+            {{ message }}
+        </div>
+        <div *ngIf="is_spinning" class="spinner">
+            <i class="fa fa-spinner fa-spin"></i>
+            <br>
+            <span>加载中...</span>
+        </div>
+        
+        <div class="col-md-3 col-sm-3 col-xs-6" *ngFor="let shop of shops| filterShops: selected_type_id" [routerLink]="['shop', shop.id]" [tooltip]="pop" placement="top">
+            <template #pop>
+                {{ shop.name }}
+                <hr style="margin: 4px">
+                {{ shop.notice }}
+            </template>
+
+            <div class="thumbnail"> <!-- http://placehold.it/400x250/000/fff -->
+                <img class="image" src="http://www.sagewu.cn/backend/show_img.php?type=shop&id={{shop.id}}" />
+                <div class="caption">
+                    <h4>{{ shop.name }}</h4>
+                    <div class="row">
+                        <div class="col-md-7 col-xs-12">
+                            <rating [(ngModel)]="shop.grade" [max]="5" [readonly]="true" style="color: #FFC30C"></rating>
+                        </div>
+                        <div class="col-md-5 col-xs-12">
+                            <p>月售{{ shop.sale }}单</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

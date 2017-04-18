@@ -1,0 +1,48 @@
+<div class="row" id="row">
+    <div class="col-md-5 col-sm-4 col-xs-1"></div>
+    <div class="col-md-3 col-sm-4 col-xs-10">
+        <div class="login">
+            <h4 class="title">
+                登录
+            </h4>
+            <form class="login" [formGroup]="user_form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="text" placeholder="手机号码" formControlName="phone" tooltip="请正确填写" [isOpen]="user_form.controls['phone'].touched && !user_form.controls['phone'].valid" [triggers]="''" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="password" placeholder="密码" formControlName="password" tooltip="请正确填写" [isOpen]="user_form.controls['password'].touched && !user_form.controls['password'].valid" [triggers]="''" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <button md-button type="submit" (click)="login()">登录</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-xs-6">
+                        <div class="form-group">
+                            <md-checkbox id="remember" color="warn" (change)="rememberChange($event.checked)" ></md-checkbox>
+                            <label for="remember">记住我</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-6 forget">
+                        <a href="#">忘记密码？</a>
+                    </div>
+                </div>
+                <div *ngIf="message" class="row" style="position: relative;">
+                    <div class="col-md-12 alert alert-danger" style="position: absolute;">
+                        {{ message }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<!-- Top navgation -->
+<nav class="navbar navbar-default navbar-fixed-top" [ngClass]="{'navbar-custom': !global_service.navbar_status}" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" [routerLink]="['home']" >Your Food</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul *ngIf="!user" class="nav navbar-nav navbar-right">
+                <li><a [routerLink]="['user', 'login']" >登录</a></li>
+                <li><a [routerLink]="['user', 'register']" >注册</a></li>
+            </ul>
+            <ul *ngIf="user" class="nav navbar-nav navbar-right">
+                <li><a>{{ user.name }}</a></li>
+                <li><a (click)="logout()">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main view -->
+<router-outlet></router-outlet>
+
+<footer>
+  <div class="container">
+    <div class="row">
+
+        <div class="col-md-4 col-sm-6">
+            <div class="logo"> Logo</div>
+            <p>YourFood 与亲人朋友享受就餐的美好时光.</p>
+            <p><i class="fa fa-map-pin"></i> Place : 帝都</p>
+            <p><i class="fa fa-phone"></i> Phone : +666 6666 6666</p>
+            <p><i class="fa fa-envelope"></i> E-mail : info@google.com</p>
+        </div>
+
+        <div class="col-md-2 col-sm-6 link">
+            <h5 class="heading">链接</h5>
+            <ul>
+                <li><a href="#"> Privacy Policy</a></li>
+                <li><a href="#"> Terms & Conditions</a></li>
+                <li><a href="#"> Client Gateway</a></li>
+                <li><a href="#"> Ranking</a></li>
+                <li><a href="#"> Frequently Ask Questions</a></li>
+            </ul>
+        </div>
+
+        <div class="col-md-3 col-sm-6 news">
+            <h5 class="heading">消息</h5>
+            <div>
+                <p>最新消息最新消息最新消息最新消息最新消息最新消息...<span>March 1,2017</span></p>
+                <p>最新消息最新消息最新消息最新消息最新消息最新消息...<span>March 1,2017</span></p>
+                <p>最新消息最新消息最新消息最新消息最新消息最新消息...<span>March 1,2017</span></p>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <blockquote cite="sagewu.cn"><a href="#">Wechat</a></blockquote>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-sm-12">
+            <p>© 2016 - All Rights with SageWu</p>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-sm-12">
+            <ul class="bottom-ul">
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact us</a></li>
+                <li><a href="#">Site Map</a></li>
+            </ul>
+        </div>
+    </div>
+  </div>
+</footer>

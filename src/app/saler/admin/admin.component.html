@@ -1,0 +1,32 @@
+<md-sidenav-container class="row" id="row">
+    <md-sidenav #sidenav class="sidebar col-lg-2 col-md-3 col-sm-3">
+        <a class="briefcase"><strong><i class="fa fa-briefcase"></i>&nbsp;管理</strong></a>
+        <hr>
+        <ul class="nav nav-pills nav-stacked">
+            <li [routerLink]="['./dashboard']" routerLinkActive="active"><a><i class="fa fa-tachometer"></i>&nbsp;控制台</a></li>
+            <li [routerLink]="['./food']" routerLinkActive="active"><a><i class="fa fa-cutlery"></i>&nbsp;餐饮</a></li>
+            <li [routerLink]="['./order']" routerLinkActive="active"><a><i class="fa fa-list"></i>&nbsp;订单</a></li>
+        </ul>
+    </md-sidenav>
+
+    <div *ngIf="!is_mobile" class="sidebar col-lg-2 col-md-3 col-sm-3">
+        <a class="briefcase"><strong><i class="fa fa-briefcase"></i>&nbsp;管理</strong></a>
+        <hr>
+        <ul class="nav nav-pills nav-stacked">
+            <li [routerLink]="['./dashboard']" routerLinkActive="active"><a><i class="fa fa-tachometer"></i>&nbsp;控制台</a></li>
+            <li [routerLink]="['./food']" routerLinkActive="active"><a><i class="fa fa-cutlery"></i>&nbsp;餐饮</a></li>
+            <li [routerLink]="['./order']" routerLinkActive="active"><a><i class="fa fa-list"></i>&nbsp;订单</a></li>
+        </ul>
+    </div>
+
+
+    <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
+        <button *ngIf="is_mobile" md-button (click)="sidenav.open()">
+            <strong class="title"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;&nbsp;控制面板</strong>
+        </button>
+        <strong *ngIf="!is_mobile" class="title"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;&nbsp;控制面板</strong>
+
+        <hr>
+        <router-outlet></router-outlet>
+    </div>
+</md-sidenav-container>

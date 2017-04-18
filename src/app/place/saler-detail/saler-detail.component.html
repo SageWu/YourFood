@@ -1,0 +1,164 @@
+<div class="container-fulid" (click)="hiddenCart()">
+    <div class="row header">
+        <div class="col-md-1"></div>
+
+        <div class="col-md-5 col-sm-6 col-xs-12">
+            <div class="img"  (mouseover)="show_detail = !show_detail" (mouseout)="show_detail = !show_detail">
+                <img src="http://www.sagewu.cn/backend/show_img.php?type=shop&id={{ shop?.id }}">
+                <span *ngIf="show_detail" class="detail">
+                    <div class="grade">
+                        <h2 style="color: #f74342">{{ shop?.grade }}</h2>
+                        <p>综合评价</p>
+                    </div>
+                    <div>
+                        <p>&nbsp;&nbsp;&nbsp;{{ shop?.notice }}</p>
+                    </div>
+                    <div>
+                        <p>&nbsp;&nbsp;&nbsp;商家地址: {{ shop?.address }}</p>
+                    </div>
+                </span>
+            </div>
+            
+            <div class="profile"  (mouseover)="show_detail = !show_detail" (mouseout)="show_detail = !show_detail">
+                <h2>{{ shop?.name }}</h2>
+                <span>{{ shop?.status == true? '营业中': '休息中' }}</span>
+                <span><i class="fa fa-phone"></i>&nbsp;{{ shop?.phone }}</span>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-sm-6 col-xs-12 text-center point">
+            <div class="row">
+                <div class="col-md-4 col-sm-3 col-xs-3">
+                    <span><strong>{{ shop?.sale }}</strong></span>
+                    <p>销量</p>
+                </div>
+                <div class="col-md-4 col-sm-3 col-xs-3">
+                    <span><strong>{{ shop?.sale }}</strong></span>
+                    <p>评价</p>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <span>
+                        <strong>{{ shop?.love }}</strong>
+                        <p>收藏</p>   
+                    </span>
+                </div>
+                <div class="col-md-1 col-sm-3 col-xs-3 love">
+                    <span><i class="fa fa-heart"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--navbar-->
+    <div class="row navbar">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 col-md-12">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-6 col-xs-5 tab-parent">
+                    <md-tab-group>
+                        <md-tab label="所有商品"></md-tab>
+                        <md-tab label="评价" class="tab2"></md-tab>
+                    </md-tab-group>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-7 sort-parent">
+                    <ul class="sort">
+                        <li [class.active]="sort_by == 'grade'" (click)="selectSortBy('grade')">评价&nbsp;<i class="fa fa-arrow-down"></i></li>
+                        <li [class.active]="sort_by == 'sale'" (click)="selectSortBy('sale')">销量&nbsp;<i class="fa fa-arrow-down"></i></li>
+                        <li [class.active]="sort_by == 'price'" (click)="selectSortBy('price')">价格&nbsp;<i class="fa fa-arrow-down"></i></li>
+                        <li [class.active]="sort_by == 'default'" (click)="selectSortBy('default')">默认</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-3 search">
+                    <md-input-container>
+                        <input mdInput placeholder="搜索">
+                    </md-input-container>
+                    <i class="fa fa-search"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--category-->
+    <!--<div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 type">
+            <ul>
+                <li *ngFor="let type of food_types">
+                    {{ type.name }}
+                </li>
+            </ul>
+        </div>
+    </div>-->
+
+    <!--foods-->
+    <div class="row foods">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 col-md-12">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 food" *ngFor="let food of foods| sortFoods: sort_by">
+                    <div class="img" (click)="openFoodDetailDialog(food.id)">
+                        <img src="http://www.sagewu.cn/backend/show_img.php?type=food&id={{ food.id }}" width="100%">
+                        <div class="option">
+                            <i class="fa fa-shopping-cart" (click)="selectFood(food)"></i>&nbsp;
+                            <i class="fa fa-heart"></i>
+                        </div>
+                    </div>
+
+                    <h5>{{ food.name }}</h5>
+                    <div>￥{{ food.price }}</div>
+                    <div>
+                        <rating [(ngModel)]="food.grade" [max]="5" [readonly]="true" style="color: #FFC30C"></rating>
+                        <a href="#">({{ food.sale }} reviews)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 cart" #cart  (blur)="hiddenCart()">
+    <div class="panel panel-info" [class.hidden]="!show_cart">
+        <div class="panel-heading"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;购物车</div>
+        <div class="panel-body"> 
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th width="25%">名称</th>
+                            <th>数量</th>
+                            <th>价格</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let selected_food of selected_foods; let i = index">
+                            <td class="col-xs-2">{{ selected_food.name }}</td>
+                            <td class="col-xs-8">
+                                <div class="num">
+                                    <button class="btn btn-default" (click)="reduceFood(i)"><i class="fa fa-minus"></i></button>
+                                    <input class="form-control" type="text" style="width: 45px;text-align:center;" [(ngModel)]="selected_food.num">
+                                    <button class="btn btn-default" (click)="addFood(i)"><i class="fa fa-plus"></i></button>
+                                    <div class="clear"></div>
+                                </div>
+                            </td>
+                            <td class="col-xs-2">￥{{ selected_food.price }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav">
+        <div (click)="show_cart = !show_cart">
+            <i class="fa fa-shopping-cart" style="font-size: 15px;"></i>&nbsp;
+            ￥{{ sum }}
+        </div>
+        <div>
+            去结算&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-2 min-cart" [class.hidden]="hidden_min_cart" (click)="showCart()">
+    <i class="fa fa-shopping-cart"></i>
+</div>

@@ -1,0 +1,84 @@
+.start {
+    color: white;
+    width: 100%;
+    font-size: 25px;
+    background-color: #3973ac;
+    height: 50px;
+}
+
+.modal {
+    margin-top: 10%;
+}
+@media screen and (max-width: 426px){
+    .modal {
+        margin-top: 50%;
+    }
+}
+.modal-content {
+    width: 400px;
+    margin: auto;
+}
+@media screen and (max-width: 376px) {
+    .modal-content {
+        width: 350px;
+    }
+    .modal-content .modal-body .search-box {
+        width: 166px;
+    }
+}
+@media screen and (max-width: 321px) {
+    .modal-content {
+        width: 300px;
+    }
+    .modal-content .modal-body .search-box {
+        width: 125px;
+    }
+}
+.modal-body .btn-group {
+    float: left;
+    margin-right: 10px;
+}
+.modal-body .dropdown-menu {
+    width: 370px;
+    list-style: none;
+}
+@media screen and (max-width: 376px) {
+    .modal-body .dropdown-menu {
+        width: 320px;
+    }
+}
+@media screen and (max-width: 321px) {
+    .modal-body .dropdown-menu {
+        width: 270px;
+    }
+}
+.modal-body ul.city-list {
+    list-style: none;
+}
+.modal-body .city-list li {
+    float: left;
+    margin-top: 5px;
+    margin-right: 10px;
+    width: 50px;
+    cursor: pointer;
+}
+.modal-body input[type="text"] {
+    float: left;
+    width: 200px;
+}
+.modal-body .clear {
+    clear: both;
+}
+
+.modal-body .search-address {
+    position: absolute;
+    background-color: white;
+    left: 0px;
+    top: 50px;
+    width: 100%;
+    border-radius: 5px;
+    list-style: none;
+}
+.modal-body .search-address li {
+    margin: 15px 0px;
+}

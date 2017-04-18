@@ -1,0 +1,12 @@
+.row {
+    padding: 0px 3%;
+}
+.food-list {
+    font-size: 18px;
+}
+.food-list .page td {
+    padding-right: 5%;
+}
+.food-list .page td * {
+    float: right;
+}

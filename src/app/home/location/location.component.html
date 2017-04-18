@@ -1,0 +1,47 @@
+<button type="button" md-button (click)="showModal()" class="start" >开始</button>
+
+<div *ngIf="is_modal_show" bsModal [config]="{show: true, keyboard: true}" (onHidden)="onHidden()" class="modal fade" #modal="bs-modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">定位</h4>
+        <button type="button" class="close pull-right" (click)="hiddenModal()">
+          <span >&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="btn-group" dropdown>
+          <button type="button" class="btn btn-primary" dropdownToggle>
+            {{ my_city?.value || '汕头市' }} <span class="caret"></span>
+          </button>
+          
+          <ul *dropdownMenu role="menu" class="dropdown-menu">
+            <li role="menuitem" class="dropdown-item">
+              <ul *ngFor="let some_cities of cities" class="city-list">
+                <li> {{ some_cities.key }} </li>
+                <li *ngFor="let city of some_cities.values">
+                  <a (click)="selectCity(city)">{{ city.value }}</a>
+                </li>
+
+                <div class="clear"></div>
+                <hr>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <input type="text" class="form-control search-box" placeholder="请输入地址" #search="ngModel" (keyup)="searchAddress()" [(ngModel)]="my_address">
+        <ul class="search-address" *ngIf="search.value != '' && show_addresses">
+          <li *ngFor="let address of addresses" (click)="selectAddress(address)">
+            {{ address }}
+          </li>
+        </ul>
+
+        <button type="button" class="btn btn-primary" (click)="finishLocation()">搜索</button>
+
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</div>

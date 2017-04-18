@@ -1,0 +1,48 @@
+<div class="row count">
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+        <div class="sale view">
+          <div class="icon"><i class="fa fa-money"></i></div>
+          <div class="num">666</div>
+          <div class="percent">4%</div>
+        </div>
+        <div class="text">销售</div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+        <div class="love view">
+          <div class="icon"><i class="fa fa-heart"></i></div>
+          <div class="num">666</div>
+          <div class="percent">4%</div>
+        </div>
+        <div class="text">收藏</div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+        <div class="user view">
+          <div class="icon"><i class="fa fa-user"></i></div>
+          <div class="num">666</div>
+          <div class="percent">4%</div>
+        </div>
+        <div class="text">客户</div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+        <div class="star view">
+          <div class="icon"><i class="fa fa-star"></i></div>
+          <div class="num">666</div>
+          <div class="percent">4%</div>
+        </div>
+        <div class="text">评价</div>
+    </div>
+</div>
+
+<div class="row">
+  <div class="">
+        <h3>变化</h3>
+        <canvas baseChart
+          [datasets]="chart_data"
+          [labels]="chart_labels"
+          [options]="chart_options"
+          [colors]="chart_colors"
+          [legend]="chart_legend"
+          [chartType]="chart_type"
+        ></canvas>
+  </div>
+</div>

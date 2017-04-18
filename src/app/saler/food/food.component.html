@@ -1,0 +1,58 @@
+<div class="page-header row">
+    <button class="btn btn-lg btn-success pull-right" (click)="openAddDialog()" ><i class="fa fa-plus"></i>&nbsp;&nbsp;添加</button>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+        <table class="table table-striped table-hover food-list">
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>价格</th>
+                    <th>销量</th>
+                    <th>评价</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let food of showed_foods">
+                    <td (click)="openFoodDetailDialog(food?.id)">{{ food?.name }}</td>
+                    <td (click)="openFoodDetailDialog(food?.id)">￥{{ food?.price }}</td>
+                    <td (click)="openFoodDetailDialog(food?.id)">{{ food?.sale }}</td>
+                    <td (click)="openFoodDetailDialog(food?.id)">{{ food?.grade }}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-xs" (click)="openUpdateDialog(food?.id)"><i class="fa fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger btn-xs" (click)="openConfirmDialog(food?.id)" ><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr class="page">
+                    <td colspan="5">
+                        <pagination class="pagination-sm" [totalItems]="foods?.length" [maxSize]="10" [(ngModel)]="current_page" [boundaryLinks]="true" (pageChanged)="pageChanged($event)" firstText="首页" lastText="末页" previousText="上一页" nextText="下一页"></pagination>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--确认删除对话框-->
+<div class="modal fade" bsModal #confirmModal="bs-modal" [config]="{ keyboard: true }" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">提示</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="confirmModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p>是否删除？</p>
+                <div class="text-center">
+                    <button class="btn btn-primary" (click)="deleteFood(delete_food_id)">确认</button>
+                    <button class="btn btn-danger" (click)="confirmModal.hide()">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+.container {
+    width: 100%;
+    background-image: url("/src/assets/img/home-sm.jpg");
+}
+@media only screen and (min-width: 768px) {
+    .container {
+        background-image: url("/src/assets/img/home-md.jpg");
+        background-position: center center;
+        background-size: 100% auto;
+    }
+}
